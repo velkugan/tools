@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <title>Base64 Encoder and Decoder</title>
+
+</head>
+<body>
+<header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">Tools</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="beautify_1.html">JSON/XML Formatter</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="EncoDeco.html">Encode/Decode</a>
+                        </li>
+                        <!-- Add more tools here -->
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+	<main>
+		<div class="container mt-5">
+		<h1 class="mb-4">Base64 Encoder and Decoder</h1>
+        <div class="row">
+            <div class="col-md-8">
+                <div class="mb-3">
+                    <label for="inputText" class="form-label">Enter text:</label>
+                    <input type="text" class="form-control" id="inputText" placeholder="Enter text here...">
+                </div>
+                <div class="mb-3">
+                    <button class="btn btn-primary me-2" onclick="encodeBase64()">Encode</button>
+                    <button class="btn btn-secondary me-2" onclick="decodeBase64()">Decode</button>
+                </div>
+                <div class="mb-3">
+                    <label for="outputText" class="form-label">Output:</label>
+                    <textarea class="form-control" id="outputText" rows="4" readonly></textarea>
+                </div>
+                <button class="btn btn-success" onclick="copyToClipboard()">Copy to Clipboard</button>
+            </div>
+        </div>
+		</div>
+    <main>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" crossorigin="anonymous"></script>
+
+    <script>
+        const inputText = document.getElementById('inputText');
+        const outputText = document.getElementById('outputText');
+
+        function encodeBase64() {
+            const text = inputText.value;
+            const encoded = btoa(text);
+            outputText.value = encoded;
+        }
+
+        function decodeBase64() {
+            const text = inputText.value;
+            try {
+                const decoded = atob(text);
+                outputText.value = decoded;
+            } catch (e) {
+                outputText.value = 'Invalid Base64 string.';
+            }
+        }
+
+        function copyToClipboard() {
+            outputText.select();
+            document.execCommand('copy');
+            alert('Output copied to clipboard.');
+        }
+    </script>
+</body>
+</html>
